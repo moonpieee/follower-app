@@ -1,0 +1,71 @@
+<form #f="ngForm" (ngSubmit)="submit(f)">
+
+  <!-- group one -->
+  <div ngModelGroup="info" #info="ngModelGroup">
+    <div *ngIf="!info.valid">first group is invalid</div>
+    <div class="form-group">
+      <label class="lbl" for="id_firstName">First Name</label>
+      <input type="text" class="form-control" name="firstName" id="id_firstName" placeholder="First Name" ngModel
+        #firstNameRef="ngModel" (change)="log(firstNameRef)" minlength="3" pattern="sumit" required>
+
+      <div class="alert alert-danger" *ngIf="firstNameRef.touched && !firstNameRef.valid">
+        <div *ngIf="firstNameRef.errors.required">First name is required</div>
+        <div *ngIf="firstNameRef.errors.minlength">First name should be {{firstNameRef.errors.minlength.requiredLength}}
+          characters</div>
+        <div *ngIf="firstNameRef.errors.pattern">First name does'nt match pattern</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="lbl" for="id_lastName">Last Name</label>
+      <input type="text" class="form-control" name="lastName" id="id_lastName" placeholder="Last Name" ngModel
+        #lastNameRef="ngModel" required>
+
+      <div class="alert alert-danger" *ngIf="lastNameRef.touched && !lastNameRef.valid">
+        <div *ngIf="lastNameRef.errors.required">Last name is required</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- group two -->
+  <div ngModelGroup="data" #data="ngModelGroup" >
+    <div *ngIf="!data.valid"></div>
+    <div class="form-group">
+      <label class="lbl" for="id_comment">Comments</label>
+      <textarea class="form-control" name="comment" id="id_comment" rows="3" placeholder="comment" ngModel
+        #comments="ngModel" required></textarea>
+      <div class="alert alert-danger" *ngIf="comments.touched && !comments.valid">Comments cannot be empty</div>
+    </div>
+
+    <div class="form-group w-25">
+      <label for="contactMethod" class="lbl">Contact Method</label>
+      <select  class="custom-select" name="contactMethod_drpDwnOpt" id="contactMethod" ngModel >
+        <option value="select..." disabled="disabled"></option>
+        <!-- if want object fro selected dropdown -->
+        <option *ngFor="let cm of contactMethods" [ngValue]="cm">{{cm.name}}</option>
+        <!-- if want only one value -->
+        <!-- <option *ngFor="let cm of contactMethods" [value]="cm.id">{{cm.name}}</option> -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <div class="form-check" *ngFor="let cm of contactMethods">
+        <label class="form-check-label" for="optRadio_{{cm.id}}">
+          <input class="form-check-input" ngModel name="contactMethod_radioOpt" type="radio" id="optRadio_{{cm.id}}" [value]="cm.id">{{cm.name}}
+        </label>
+      </div>
+    </div>
+
+
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" ngModel name="isSubscribed">
+        Subscribe to Mailing List
+      </label>
+    </div>
+  </div>
+
+  {{ f.value | json }}
+
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+
+</form>

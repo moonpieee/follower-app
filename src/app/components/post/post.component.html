@@ -1,0 +1,15 @@
+<div class="container">
+   <div class="row">
+     <div class="col-12">
+       <input type="text" class="form-control" (keyup.enter)="createPost(title)" #title>
+     </div>
+     <div class="col-12 mt-2">
+       <ul class="list-group">
+         <li class="list-group-item" *ngFor="let p of posts">
+          <button type="button" class="btn btn-sm btn-danger" (click)="deletePost(p.id)">Delete</button>
+          {{p.title}}
+        </li>
+       </ul>
+     </div>
+   </div>
+</div>
