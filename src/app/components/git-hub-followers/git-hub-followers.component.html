@@ -1,3 +1,13 @@
-<p>
-  git-hub-followers works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-3" *ngFor="let f of myFollowersData |async ; index as i ; trackBy: i">
+      <div class="card m-2">
+        <img class="card-img-top" src="{{f.avatar_url}}" alt="">
+        <div class="card-body">
+          Name :<a class="card-title card-link" routerLink="{{f.id}}"> {{f.login}}</a><br/>
+          GitHub Link :<a class="card-link" routerLink="{{f.login}}"> {{f.html_url}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,27 +6,13 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PostComponent } from './components/post/post.component';
 
 const routes: Routes = [
-  {
-    path:'',
-    component:HomeComponent,
-   },
-  {
-    path:'home',
-    component:HomeComponent,
-   },
-  {
-    path:'posts',
-    component:PostComponent,
-   },
-  {
-    path:'followers',
-    component:GitHubFollowersComponent
-   },
-   {
-    path:'**',
-    component:NotFoundComponent
-   },
-
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'posts', component: PostComponent },
+  { path: 'followers', component: GitHubFollowersComponent },
+  { path: 'followers:id', component: GitHubFollowersComponent },
+  { path: 'followers:login', component: GitHubFollowersComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

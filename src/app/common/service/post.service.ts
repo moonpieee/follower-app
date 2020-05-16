@@ -30,4 +30,8 @@ export class PostService {
     // })
   }
 
+  getGitHubFollower(url):Observable<any>{
+    return this.http.get(url);
+  }
+
 }
